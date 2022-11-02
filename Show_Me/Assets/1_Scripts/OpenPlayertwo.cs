@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OpenPlayertwo : MonoBehaviour
 {
+    /*
     //opening gate Player 2/1
 
     public static bool player = true;
@@ -58,4 +59,5 @@ public class OpenPlayertwo : MonoBehaviour
         }
 
     }
+    */
 }

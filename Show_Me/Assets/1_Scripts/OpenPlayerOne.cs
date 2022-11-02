@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class OpenPlayerOne : MonoBehaviour
 {
     //opening gate Player 1/2
-
+    /*
     public static bool occupied = true;
     void update()
     {
@@ -54,5 +54,5 @@ public class OpenPlayerOne : MonoBehaviour
 
     }
    
-
+    */
 }
