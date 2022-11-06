@@ -6,55 +6,51 @@ using UnityEngine.Animations;
 public class Port : MonoBehaviour
 {
     public Animator portAnimator;
+    public Transform gateTransform;
+    float gateYPos;
+    public float animSpeed;
 
     public float maxSimultaneous; // The max time between p1 interact and p2 interact to still count as a simultaneous input
-    //float simultaneousTimer;
-
-    //bool ePress;
-    //bool pPress;
-
 
     public Gear[] gears;
-    //public Gear gear1;
-    //public Gear gear2;
-
     // Update is called once per frame
+
+    private void Start()
+    {
+        gateYPos = 0.3f;
+    }
+
     void Update()
     {
-
-        //simultaneousTimer -= Time.deltaTime;
-
-        //if (gear1.occupied && gear2.occupied) // If both gears are occupied, check for input
-        //{
-        //    if (Input.GetKeyDown(KeyCode.E))
-        //    {
-        //        simultaneousTimer = maxSimultaneous;
-        //        ePress = true;
-        //    }
-                
-        //    if (Input.GetKeyDown(KeyCode.P))
-        //    {
-        //        simultaneousTimer = maxSimultaneous;
-        //        pPress = true;
-        //    }
-        //}
-
-        //if (simultaneousTimer < 0) // If the keys were not pressed simultaneously, reset
-        //{
-        //    ePress = false;
-        //    pPress = false;
-        //}
+        Debug.Log(gateYPos);
 
         if (CheckGears()) // If both players are interacting
         {
-            portAnimator.SetTrigger("Open");
+            //portAnimator.SetTrigger("Open");
+            gateYPos+= 0.1f * animSpeed;
+            gateTransform.position = GetGatePosition();
+            if (gateYPos >= 10)
+            {
+                gateYPos = 10;
+            }
         }
 
         if (!CheckGears()) // one of the players walks away from the gears
         {
-            portAnimator.SetTrigger("Close");
+            //portAnimator.SetTrigger("Close");
+            gateYPos-= 0.1f * animSpeed;
+            gateTransform.position = GetGatePosition();
+            if (gateYPos <= 0.3f)
+            {
+                gateYPos = 0.3f;
+            }
         }
+    }
 
+    Vector3 GetGatePosition()
+    {
+        Vector3 gatePos = new Vector3(gateTransform.position.x, gateYPos + 4.6f, gateTransform.position.z);
+        return gatePos;
     }
 
     bool CheckGears()
