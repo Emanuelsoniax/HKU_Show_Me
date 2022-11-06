@@ -5,30 +5,38 @@ using UnityEngine;
 public class Gear : MonoBehaviour
 {
     public bool occupied;
+    //public Port port;
+    public bool playerIsInteracting;
+    public Transform gearTransform;
 
-    public Port port;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
-    }
+        if (Input.GetKey(KeyCode.E) && occupied == true)
+        {
+            playerIsInteracting = true;
+        }
+        else
+        {
+            playerIsInteracting = false;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (playerIsInteracting)
+        {
+            gearTransform.Rotate(1,0,0);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.GetComponent<PlayerMovement>())
+        {
             occupied = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.GetComponent<PlayerMovement>())
         {
             occupied = false;
         }
