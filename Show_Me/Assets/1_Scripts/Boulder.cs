@@ -133,7 +133,7 @@ public class Boulder : MonoBehaviour, IInteractable
     {
         if (other.GetComponent<Plank>())
         {
-            other.GetComponent<Plank>().transform.position = new Vector3(transform.position.x, other.GetComponent<Plank>().transform.position.y, transform.position.z - 1.5f);
+            //other.GetComponent<Plank>().transform.position = new Vector3(transform.position.x, other.GetComponent<Plank>().transform.position.y, transform.position.z - 1.5f);
             plank = true;
         }
     }

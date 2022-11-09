@@ -30,16 +30,18 @@ public class PlankStructure : MonoBehaviour
 
     private void Collapse()
     {
-        foreach(Plank plank in planks)
-        {
-            plank.enabled = true;
-        }
+        //foreach(Plank plank in planks)
+        //{
+        //    plank.enabled = true;
+        //}
 
-        foreach(Rigidbody rb in planksRB)
-        {
-            rb.useGravity = true;
-            rb.isKinematic = false;
-        }
+        //foreach(Rigidbody rb in planksRB)
+        //{
+        //    rb.useGravity = true;
+        //    rb.isKinematic = false;
+        //}
+
+        GetComponent<Animator>().SetTrigger("Collapse");
     }
 
     private void OnTriggerStay(Collider other)

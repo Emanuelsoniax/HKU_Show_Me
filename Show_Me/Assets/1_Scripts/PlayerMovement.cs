@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float gravity = -9.81f;
+    [HideInInspector] public Vector3 velocity;
+
     float sidewaysInput;
     float forwardInput;
+    Vector3 downwardsMovement;
     [HideInInspector]public Vector3 move;
 
     [SerializeField] float playerSpeed;
@@ -31,7 +35,13 @@ public class PlayerMovement : MonoBehaviour
     {
         GetInput();
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);     //groundcheck 
-        
+
+        if (!isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+        }
+
         move = transform.right * sidewaysInput + transform.forward * forwardInput;      //beweging op basis van de orientatie van de speler
         controller.Move(move * Time.deltaTime * playerSpeed);
     }
