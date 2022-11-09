@@ -38,7 +38,7 @@ public class Port : MonoBehaviour
         if (!CheckGears()) // one of the players walks away from the gears
         {
             //portAnimator.SetTrigger("Close");
-            gateYPos-= 0.1f * animSpeed;
+            gateYPos-= 0.015f * animSpeed;
             gateTransform.position = GetGatePosition();
             if (gateYPos <= 0.3f)
             {

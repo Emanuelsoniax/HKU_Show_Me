@@ -36,8 +36,10 @@ public class Plank : MonoBehaviour, IInteractable
         }
         player.heldItem = this.gameObject;
         this.transform.parent = player.gameObject.transform;
+        transform.localPosition = player.heldItemTransform.position;
         transform.position = player.heldItemTransform.position;
         GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
         player.isHoldingItem = true;
         FindObjectOfType<Boulder>().plank = false;
@@ -54,6 +56,7 @@ public class Plank : MonoBehaviour, IInteractable
         player.heldItem = null;
         player.isHoldingItem = false;
         GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().isKinematic = false;
 
         foreach (Collider collider in GetComponents<Collider>())
         {
